@@ -1,12 +1,22 @@
-// index.js
-import './css/style.css';   // 引入css
-import './less/style.less'; // 引入less
+// // index.js
+// import './css/style.css';   // 引入css
+// import './less/style.less'; // 引入less
 
-console.log('这里是打包文件入口-index.js');
 import ReactDOM from 'react-dom'
+import React from 'react'
+import store from './redux/store'
 import getRouter from './router/router'
+import { Provider } from 'react-redux';
 
-ReactDOM.render(getRouter(),document.getElementById('app'))
+const router = getRouter();
+/* 初始化 */
+renderWithHotReload(router);
+
+function renderWithHotReload(RootElement) {
+  ReactDOM.render(<Provider store={store}>{RootElement}</Provider>,
+    document.getElementById('app')
+  );
+}
 
 if (module.hot) {
     // 实现热更新

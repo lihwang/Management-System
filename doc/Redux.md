@@ -332,3 +332,28 @@ store 就是把它们联系到一起的对象。store 有以下职责：
 通过subscribe(listener) 注册监听器;
 通过 subscribe(listener) 返回的函数注销监听器。
 
+相比Flux，Redux有如下两个特点：
+
+在整个应用只提供一个Store，它是一个扁平的树形结构，一个节点状态应该只属于一个组件。
+不允许修改数据。即不能修改老状态，只能返回一个新状态。
+
+#store 的位置，
+说Redux之前，我想说一下自己学的时候遇到的一个小坑，就是Redux中的state和React中的state完全不是一回事，React中的state是组件内部自己的状态信息，而Redux中的state是Redux自己的数据，然后React就拿Redux中的数据来用，其实Redux也可以在其他框架下使用，并不是非要跟React一起使用。
+
+Redux 和 React
+到此为止，Redux自己就折腾完了，那么Redux自己的数据并没有用，它要把数据交给React用才行，接下来讲一讲怎么把数据交给React来用。如果每个应用都引入太复杂，如果定在全局容易暴露；=====》
+
+上面我们创建了一个对象store，我们要把这个store对象作为props传给React，那React就可以用了。
+
+这个store只能有一个，也就只能创建一次，也就是说你必须在最顶层处创建一个store对象，然后再一层层的传递下去，才能让所有的组件都能获得这个store对象，调用它的方法。
+
+结合redux和react   --->react-redux  
+
+
+#react-redux 
+?=====Context就是“上下文环境”，让一个数状组件上所有组件都能访问一个共有的对象。
+https://www.cnblogs.com/bax-life/p/8440326.html
+在React-redux中有两个比较关键的概念：Provider和connect方法。 
+
+  1.Provider组件是让所有的组件可以访问到store。不用手动去传。也不用手动去监听。
+  2.connect函数作用是从 Redux state 树中读取部分数据，并通过 props 来把这些数据提供给要渲染的组件。也传递dispatch(action)函数到props。
