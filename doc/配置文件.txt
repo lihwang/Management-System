@@ -4,3 +4,7 @@ npm run dev是我们开发环境下打包的文件，当然由于devServer帮我
 
     "build": "webpack --config webpack.config.js",
     "dev": "webpack-dev-server",
+
+    npm install -D yargs-parser
+拿环境的参数
+

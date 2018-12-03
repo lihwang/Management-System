@@ -3,6 +3,7 @@ let HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 let Webpack = require('webpack');
 const argv = require('yargs-parser')(process.argv.slice(2));
+console.log(process.argv,argv)
 const pro = argv.mode == 'production' ? true : false;  //  区别是生产环境和开发环境
 
 

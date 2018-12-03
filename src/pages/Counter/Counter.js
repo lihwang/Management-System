@@ -5,7 +5,9 @@ import { connect } from 'react-redux';
 class Counter extends Component {
   constructor(props) {
     super(props);
+    this.state = {};
   }
+
   render() {
     const {
       counter: { count },
@@ -24,11 +26,11 @@ class Counter extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return { counter: state.counter };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     increment: () => {
       dispatch(increment());

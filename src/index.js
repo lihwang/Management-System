@@ -4,9 +4,9 @@
 
 import ReactDOM from 'react-dom';
 import React from 'react';
+import { Provider } from 'react-redux';
 import store from './redux/store';
 import getRouter from './router/router';
-import { Provider } from 'react-redux';
 
 const router = getRouter();
 /* 初始化 */

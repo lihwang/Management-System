@@ -14,3 +14,18 @@ npm install -D eslint eslint-config-airbnb eslint-loader  eslint-plugin-import e
 "lint": "npm run format && npm run fix &&  eslint --ext .js src",  //  检测你写的代码是否符合eslint的规则
 "fix": "npm run format && eslint --fix --ext .js src",  //  npm run fix 这个是可以修复你没有按照lint规则的写法
 
+
+.eslint配置要看
+
+
+npm install -D prettier
+"format": "prettier --single-quote --trailing-comma es5 --write \"src/**/*.js\""
+你可以通过 npm run format试一下是否可以自动格式化你的代码
+
+
+
+
+npm install -D lint-staged husky 
+Git 钩子(hooks)是在Git 仓库中特定事件(certain points)触发后被调用的脚本。 详情可浏览 https://git-scm.com/book/zh/v2/自定义-Git-Git-钩子
+每次提交代码，执行 git commit之后进行自动格式化，免去每次人为手动格式化，使远程仓库代码保持风格统一。
+"precommit": "npm run lint",
