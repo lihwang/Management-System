@@ -276,6 +276,8 @@ function reducer(state = {}, action) {
 总之，combineReducers()做的就是产生一个整体的 Reducer 函数。该函数根据 State 的 key 去执行相应的子 Reducer，并将返回结果合并成一个大的 State 对象。
 
 下面是combineReducer的简单实现。
+import * as reducers from './reducers'
+将所有的reducers放入，读取为多个方法，传入后改变值Object.keys(reducers)读取方法内每个参数的变动。nextState[key]：变化后的state调用reducers[key]对应的方法传入state[key], action
 
 const combineReducers = reducers => {
   return (state = {}, action) => {
@@ -349,7 +351,8 @@ Redux 和 React
 
 结合redux和react   --->react-redux  
 
-
+所有容器组件都可以访问 Redux store，所以可以手动监听它。一种方式是把它以 props 的形式传入到所有容器组件中。但这太麻烦了，因为必须要用 store 把展示组件包裹一层，仅仅是因为恰好在组件树中渲染了一个容器组件。
+建议的方式是使用指定的 React Redux 组件 来 让所有容器组件都可以访问 store，而不必显示地传递它。只需要在渲染根组件时使用即可。
 #react-redux 
 ?=====Context就是“上下文环境”，让一个数状组件上所有组件都能访问一个共有的对象。
 https://www.cnblogs.com/bax-life/p/8440326.html
@@ -357,3 +360,19 @@ https://www.cnblogs.com/bax-life/p/8440326.html
 
   1.Provider组件是让所有的组件可以访问到store。不用手动去传。也不用手动去监听。
   2.connect函数作用是从 Redux state 树中读取部分数据，并通过 props 来把这些数据提供给要渲染的组件。也传递dispatch(action)函数到props。
+
+
+
+这个新的树就是应用的下一个 state！所有订阅 store.subscribe(listener) 的监听器都将被调用；监听器里可以调用 store.getState() 获得当前 state。
+
+
+
+####引入异步action,集成redux-thunk
+
+简单的说，中间件就是action在到达reducer，先经过中间件处理。我们之前知道reducer能处理的action只有这样的{type:xxx}，所以我们使用中间件来处理
+函数形式的action，把他们转为标准的action给reducer。这是redux-thunk的作用。
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import combineReducers from './reducers';
+
+const store = createStore(combineReducers, applyMiddleware(thunkMiddleware));

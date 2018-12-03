@@ -2,10 +2,46 @@ const path = require('path');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 let Webpack = require('webpack');
+const argv = require('yargs-parser')(process.argv.slice(2));
+const pro = argv.mode == 'production' ? true : false;  //  区别是生产环境和开发环境
+
+
+let plu = [];
+if (pro) {
+    //  线上环境
+    plu.push(
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            hash: true, // 会在打包好的bundle.js后面加上hash串
+            chunks: ['vendor', 'index', 'utils']  //  引入需要的chunk
+        }),
+        // 拆分后会把css文件放到dist目录下的css/style.css
+        new MiniCssExtractPlugin({
+            filename: "css/[name]-[chunkhash].css",
+            chunkFilename: "[id].css"
+          }),
+        new CleanWebpackPlugin('dist'),
+    )
+} else {
+    //  开发环境
+    plu.push(
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            chunks: ['vendor', 'index', 'utils']  //  引入需要的chunk
+        }),
+        // 拆分后会把css文件放到dist目录下的css/style.css
+        new MiniCssExtractPlugin({
+            filename: "css/[name].css",
+            chunkFilename: "[id].css"
+          }),
+        new Webpack.HotModuleReplacementPlugin(),  // 热更新，热更新不是刷新
+    )
+}
+
 
 module.exports = {
     mode: 'development',// 模式配置
-    devtool: 'inline-source-map',
+    devtool: pro ? '' : 'inline-source-map',  //  只有本地开发才需要调试
     entry: {// 入口文件
         index:'./src/index.js',
     },               
@@ -45,7 +81,14 @@ module.exports = {
                 use: 'babel-loader',
                 include: /src/,          // 只转化src目录下的js
                 exclude: /node_modules/  // 排除掉node_modules，优化打包速度
-            }
+            },
+            {
+                enforce: "pre",  //  代表在解析loader之前就先解析eslint-loader
+                test: /\.js|jsx$/,
+                exclude: /node_modules/,
+                include:/src/,
+                loader: "eslint-loader",
+              },
         ]
     },        
     resolve: {// 别名
@@ -76,18 +119,7 @@ module.exports = {
             }
         }
     },
-    plugins: [ // 对应的插件
-        new HtmlWebpackPlugin({
-            template:'./src/index.html',
-            filename:'index.html',
-            chunks:['vendor','index','utils']
-        }),
-        new MiniCssExtractPlugin({
-            filename: "css/[name].css",
-            chunkFilename: "[id].css"
-          }),
-        new Webpack.HotModuleReplacementPlugin()
-    ],             
+    plugins:plu,             
     devServer: {// 开发服务器配置
         port: 3000,             // 端口
         open: true,             // 自动打开浏览器

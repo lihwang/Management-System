@@ -4,10 +4,13 @@
   "description": "后台 React Ant-Design webpack4 ",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "dev": "webpack-dev-server",
     "prebuild": "npm run clean",
-    "clean": "rimraf ./dist && mkdir dist"
+    "dev": "cross-env webpack-dev-server --mode development",
+    "build": "npm run lint && cross-env npm run clean && webpack --mode production",
+    "format": "prettier --single-quote --trailing-comma es5 --write \"src/**/*.js\"",
+    "clean": "rimraf ./dist && mkdir dist",
+    "lint": "npm run format && npm run fix &&  eslint --ext .js src",
+    "fix": "npm run format && eslint --fix --ext .js src"
   },
   "repository": {
     "type": "git",
@@ -33,6 +36,12 @@
     "babel-register": "^6.26.0",
     "clean-webpack-plugin": "^1.0.0",
     "css-loader": "^1.0.1",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
     "html-withimg-loader": "^0.1.16",
@@ -40,17 +49,20 @@
     "less-loader": "^4.1.0",
     "mini-css-extract-plugin": "^0.4.5",
     "postcss-loader": "^3.0.0",
+    "prettier": "^1.15.3",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
+    "webpack-dev-server": "^3.1.10",
+    "yargs-parser": "^11.1.1"
   },
   "dependencies": {
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-redux": "^5.1.1",
     "react-router-dom": "^4.3.1",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   }
 }
