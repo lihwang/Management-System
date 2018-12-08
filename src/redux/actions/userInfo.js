@@ -24,7 +24,7 @@ function getUserInfoFail() {
 }
 
 export function getUserInfo() {
-  return function (dispatch) {
+  return function request(dispatch) {
     dispatch(getUserInfoRequest());
 
     return fetch('/api/user.json')

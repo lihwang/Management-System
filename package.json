@@ -7,7 +7,7 @@
     "prebuild": "npm run clean",
     "dev": "cross-env webpack-dev-server --mode development",
     "build": "npm run lint && cross-env npm run clean && webpack --mode production",
-    "format": "prettier --single-quote --trailing-comma es5 --write \"src/**/*.js\"",
+    "format": "prettier --single-quote --trailing-comma es5 --write \"src/**/*.(js|jsx)\"",
     "clean": "rimraf ./dist && mkdir dist",
     "lint": "npm run format && npm run fix &&  eslint --ext .js src",
     "fix": "npm run format && eslint --fix --ext .js src"

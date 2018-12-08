@@ -29,3 +29,6 @@ npm install -D lint-staged husky
 Git 钩子(hooks)是在Git 仓库中特定事件(certain points)触发后被调用的脚本。 详情可浏览 https://git-scm.com/book/zh/v2/自定义-Git-Git-钩子
 每次提交代码，执行 git commit之后进行自动格式化，免去每次人为手动格式化，使远程仓库代码保持风格统一。
 "precommit": "npm run lint",
+
+- 如果在顶部直接写/* eslint-disable */ 将文件直接排除eslint检测
+ 
