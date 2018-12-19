@@ -26,11 +26,11 @@ class Counter extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return { counter: state.counter };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     increment: () => {
       dispatch(increment());

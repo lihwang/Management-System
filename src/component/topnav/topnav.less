@@ -1,0 +1,41 @@
+.topnav{
+    height: 48px;
+    background-color: #2459a2;
+    color: white;
+    .logo{
+        height: 48px;
+        width: 200px;
+        text-align: center;
+        color: white;
+        a img{
+            height: 48px;
+            width: 130px;
+        }
+    }
+    .person_info{
+        position: relative;
+        height: 48px;
+        width: 160px;
+        &:hover .info{
+            display: block;
+        }
+        img{
+            border: 0;
+            height: 48px;
+            width: 50px;
+            border-radius: 50%;
+        }
+        .info{
+            position: absolute;
+            width: 150px;
+            background-color: cornflowerblue;
+            top: 50px;
+            z-index: 20;
+            display: none;
+            a{
+                display: block;
+                color: white;
+            }
+        }
+    }
+}

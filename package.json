@@ -7,7 +7,7 @@
     "prebuild": "npm run clean",
     "dev": "cross-env webpack-dev-server --mode development",
     "build": "npm run lint && cross-env npm run clean && webpack --mode production",
-    "format": "prettier --single-quote --trailing-comma es5 --write \"src/**/*.(js|jsx)\"",
+    "format": "prettier --single-quote --trailing-comma es5 --write \"src/**/*.js\"",
     "clean": "rimraf ./dist && mkdir dist",
     "lint": "npm run format && npm run fix &&  eslint --ext .js src",
     "fix": "npm run format && eslint --fix --ext .js src"
@@ -24,6 +24,7 @@
   "homepage": "https://github.com/lihwang/Management-System#readme",
   "devDependencies": {
     "@babel/core": "^7.1.6",
+    "@babel/plugin-proposal-class-properties": "^7.2.1",
     "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
@@ -60,6 +61,8 @@
     "yargs-parser": "^11.1.1"
   },
   "dependencies": {
+    "antd": "^3.11.2",
+    "axios": "^0.18.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-redux": "^5.1.1",

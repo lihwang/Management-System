@@ -1,0 +1,30 @@
+
+* {
+	margin: 0px; 
+	padding: 0px; 
+	box-sizing: border-box;
+}
+
+body, html {
+	height: 100%;
+	font-family: 'Microsoft Yahei', sans-serif;
+}
+#app{
+    height: 100%;
+}
+button{
+    outline: none;
+    border: none;
+    background: transparent;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+
+.x-tip{
+    font-size: 20px;
+    margin-top: 20px;
+}

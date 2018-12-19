@@ -1,6 +1,9 @@
 {
     "root": true, 
-    "extends": ["airbnb"],
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
+    ],
     "parser": "babel-eslint",  
     "env": {
       "browser": true,
@@ -18,6 +21,7 @@
       "generator-star-spacing": [0],
       "consistent-return": [0],
       "no-shadow": [0],
+      "no-console":[0],
       "react/forbid-prop-types": [0],
       "react/jsx-filename-extension": [
         1,
@@ -55,6 +59,7 @@
         }
       ],
       "no-else-return": [0],
+      "no-script-url":[0] ,
       "no-restricted-syntax": [0],
       "import/no-extraneous-dependencies": [0],
       "no-use-before-define": [0],
@@ -68,6 +73,7 @@
       "no-bitwise": [0],
       "no-cond-assign": [0],
       "import/no-unresolved": [0],
+      "no-debugger":"off",
       "comma-dangle": [
         "error",
         {

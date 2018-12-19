@@ -48,7 +48,7 @@ module.exports = {
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
             }, {
                 test: /\.less$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'less-loader']
+                use: [pro?MiniCssExtractPlugin.loader:'style-loader', 'css-loader', 'postcss-loader', 'less-loader']
             }, {
                 test: /\.(jpe?g|png|gif)$/,
                 use: [
@@ -85,14 +85,16 @@ module.exports = {
             pages: path.join(__dirname, 'src/pages'),
             component: path.join(__dirname, 'src/component'),
             actions: path.join(__dirname, 'src/redux/actions'),
-            reducers: path.join(__dirname, 'src/redux/reducers')
+            reducers: path.join(__dirname, 'src/redux/reducers'),
+            utils:path.join(__dirname, 'src/utils'),
+            common:path.join(__dirname, 'src/common'),
+            config:path.join(__dirname, 'src/config'),
         },
         extensions: [
             '.js',
             '.jsx',
             '.json',
             '.css',
-            '.scss',
             '.less'
         ] // 省略后缀
     },
@@ -117,7 +119,7 @@ module.exports = {
     },
     plugins: plu,
     devServer: { // 开发服务器配置
-        port: 3000, // 端口
+        port: 3001, // 端口
         open: true, // 自动打开浏览器
         hot: true, // 开启热更新
         overlay: true, // 浏览器页面上显示错误

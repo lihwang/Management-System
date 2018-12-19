@@ -13,18 +13,18 @@ class UserInfo extends Component {
         {isLoading
           ? '请求信息中......'
           : errorMsg || (
-          <div>
-            <p>用户信息：</p>
-            <p>
+              <div>
+                <p>用户信息：</p>
+                <p>
                   用户名：
-              {userInfo.name}
-            </p>
-            <p>
+                  {userInfo.name}
+                </p>
+                <p>
                   介绍：
-              {userInfo.intro}
-            </p>
-          </div>
-          )}
+                  {userInfo.intro}
+                </p>
+              </div>
+            )}
         <button onClick={() => getUserInfo()}>请求用户信息</button>
       </div>
     );

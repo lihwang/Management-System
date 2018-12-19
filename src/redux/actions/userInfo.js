@@ -28,10 +28,10 @@ export function getUserInfo() {
     dispatch(getUserInfoRequest());
 
     return fetch('/api/user.json')
-      .then((response) => {
+      .then(response => {
         return response.json();
       })
-      .then((json) => {
+      .then(json => {
         dispatch(getUserInfoSuccess(json));
       })
       .catch(() => {
