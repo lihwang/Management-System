@@ -10,7 +10,8 @@
     "format": "prettier --single-quote --trailing-comma es5 --write \"src/**/*.js\"",
     "clean": "rimraf ./dist && mkdir dist",
     "lint": "npm run format && npm run fix &&  eslint --ext .js src",
-    "fix": "npm run format && eslint --fix --ext .js src"
+    "fix": "npm run format && eslint --fix --ext .js src",
+    "node":"node ./nodeServe/express.js"
   },
   "repository": {
     "type": "git",

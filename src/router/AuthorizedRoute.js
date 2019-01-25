@@ -4,7 +4,7 @@ import { Route, Redirect } from 'react-router-dom';
 class AuthorizedRoute extends React.Component {
   render() {
     const { component: Component, ...rest } = this.props;
-    const isLogged = sessionStorage.getItem('userName') != null ? true : false;
+    const isLogged = sessionStorage.getItem('user') != null ? true : false;
     return (
       <Route
         {...rest}

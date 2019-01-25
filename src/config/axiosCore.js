@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { createHashHistory } from 'history';
+import { notification } from 'antd';
 
 let globalCode = {
-  success: '200',
-  timeout: '1',
+  success: '0',
+  timeout: '-10',
   busyCode: '-1',
 };
 
@@ -29,42 +30,33 @@ instance.interceptors.request.use(
 //添加一个响应拦截器
 instance.interceptors.response.use(
   function(response) {
-    // 1.成功
-    if (
-      response.data.success &&
-      response.data.messageCode === globalCode.success
-    ) {
-      return response.data.data;
-    }
+      // 1.成功
+      if (response.data.code === globalCode.success) {
+        return response.data.data;
+      }
 
-    // 2.session过期
-    if (
-      !response.data.success &&
-      response.data.messageCode === globalCode.timeout
-    ) {
-      createHashHistory().push('/login');
-      // 定义一个messagecode在后面会用到
-      return Promise.reject({
-        messageCode: 'timeout',
-      });
-    }
+      // 2.session过期
+      if (response.data.code === globalCode.timeout) {
+        createHashHistory().push('/login');
+        // 定义一个messagecode在后面会用到
+        return Promise.reject({code: 'timeout'});
+      }
 
-    // 3. 系统异常、网络异常
-    if (
-      response.data.success &&
-      response.data.messageCode === globalCode.busyCode
-    ) {
-      return Promise.reject({
-        messageCode: 'netError',
-      });
-    }
+      // 3. 系统异常、网络异常
+      if (response.data.success && response.data.code === globalCode.busyCode) {
+        return Promise.reject({code: 'netError'});
+      }
 
     // 3.其他失败，比如校验不通过等
+    notification.error({
+      message:'提示',
+      description:response.data.message,
+    })
     return Promise.reject(response.data);
   },
   function() {
     return Promise.reject({
-      messageCode: 'sysError',
+      code: 'sysError',
     });
   }
 );

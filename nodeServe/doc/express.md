@@ -66,3 +66,14 @@ res.type()：设置Content-Type的MIME类型
     2.req.params,req.query,req.body对于才入门的同学来说经常会弄混
 
     req.params所对应的url长这个样子 http://localhost:3000/10
+    app.get("/:id",function (req,res) {
+        res.send(req.params["id"]);
+    });
+
+    所对应的url长这个样子http://localhost:3000/?id=10
+    app.get("/",function (req,res) {
+        res.send(req.query["id"]);
+    });
+
+    req.body是用在post请求当中
+    从其中不难看出get请求和post请求的区别，get接受参数使用req.query,而post接受参数使用req.body
