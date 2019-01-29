@@ -11,7 +11,7 @@
     "clean": "rimraf ./dist && mkdir dist",
     "lint": "npm run format && npm run fix &&  eslint --ext .js src",
     "fix": "npm run format && eslint --fix --ext .js src",
-    "node":"node ./nodeServe/express.js"
+    "node": "node ./nodeServe/express.js"
   },
   "repository": {
     "type": "git",
@@ -58,11 +58,11 @@
     "url-loader": "^1.1.2",
     "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10",
+    "webpack-dev-server": "^3.1.14",
     "yargs-parser": "^11.1.1"
   },
   "dependencies": {
-    "antd": "^3.11.2",
+    "antd": "^3.13.0",
     "axios": "^0.18.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",

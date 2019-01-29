@@ -8,10 +8,13 @@ export default class SideNav extends Component {
   }
 
   render() {
+    const { children } = this.props;
     return (
       <div className="sidenav">
         <div className="menu" />
-        <div className="content" />
+        <div className="content">
+          {children}
+        </div>
       </div>
     );
   }

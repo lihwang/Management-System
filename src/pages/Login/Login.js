@@ -28,7 +28,7 @@ export default class Login extends Component {
     };
     if(this.state.userName=='admin'&&this.state.password=='admin'){
       sessionStorage.setItem('user',JSON.stringify(params));
-        this.props.history.push('/Home');
+        this.props.history.push('/home');
       return false;
     }
 
